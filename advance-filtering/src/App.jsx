@@ -17,7 +17,7 @@ function App() {
    setQuery(event.target.value)
  }
 
- const filteredItems = products.filter(products => products.title.toLocaleLowerCase().indexOf(query.toLocaleLowerCase()) !== -1)
+ const filteredItems = products.filter(product => product.title.toLocaleLowerCase().indexOf(query.toLocaleLowerCase()) !== -1)
 
  const handleChange = event =>{
    setSelectedCategory(event.target.value)
@@ -37,11 +37,11 @@ function App() {
         return category === selected || color === selected || company === selected || newPrice === selected || title === selected;
       })
     }
-    return filteredProducts.map(({img,title,start,reviews,prevPrice , newPrice})=>(
+    return filteredProducts.map(({img,title,star,reviews,prevPrice , newPrice})=>(
       <Card 
       img={img} 
       title={title}
-      start={start}
+      star={star}
       reviews={reviews}
       prevPrice={prevPrice}
       newPrice={newPrice}
@@ -54,9 +54,9 @@ function App() {
   return (
     <>
       <Sidebar handleChange={handleChange}/>
-      <Nav/>
-      <Recommended />
-      <Products/>
+      <Nav query={query} handleInputChange={handleInputChange}/>
+      <Recommended handleClick={handleClick} />
+      <Products result={result}/>
     </>
   )
 }
